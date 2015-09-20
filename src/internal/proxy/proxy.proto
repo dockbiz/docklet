@@ -1,0 +1,36 @@
+syntax = "proto2";
+option go_package = "proxy";
+
+package proxy;
+
+message Request {
+	required string service_name = 1;
+	required string method = 2;
+	required bytes request = 3;
+	optional string request_id = 4;
+}
+
+message ServiceError {
+	required int32 code = 1;
+	required string detail = 2;
+}
+
+message RPCError {
+	enum ErrorCode {
+		UNKNOWN = 0;
+		CALL_NOT_FOUND = 1;
+		SECURITY_VIOLATION = 2;
+		REQUEST_TOO_LARGE = 3;
+		BAD_REQUEST = 4;
+		CANCELLED = 5;
+		REPLAY_ERROR = 6;
+		DEADLINE_EXCEEDED = 7;
+	}
+}
+
+message Response {
+	optional bytes response = 1;
+	optional bytes exception = 2;
+	optional ServiceError service_error = 3;
+	optional bytes code_id = 4;
+}

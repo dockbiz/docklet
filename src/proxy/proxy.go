@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"strconv"
 
-	pb "github.com/dockbiz/docklet/proxt"
+	pb "github.com/dockbiz/docklet/interanl/proxy"
 )
 
 func init() {
